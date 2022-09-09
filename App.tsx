@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+// Utility Imports
+import BottomSheet from "@gorhom/bottom-sheet";
+import { Button, Keyboard, StyleSheet, Text, TextInput } from "react-native";
+
+const snapPoints = ["90%"];
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={styles.container}>
+      <Button title="close" onPress={() => Keyboard.dismiss()} />
+      <TextInput style={styles.input} placeholder={"message"} />
+      <BottomSheet
+        snapPoints={snapPoints}
+        index={-1}
+        enablePanDownToClose
+        backgroundStyle={{ backgroundColor: "#ccc" }}
+      >
+        <Text>Hello there</Text>
+      </BottomSheet>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "space-around",
+    backgroundColor: "white",
+  },
+  input: {
+    backgroundColor: "#eee",
+    padding: 8,
   },
 });
